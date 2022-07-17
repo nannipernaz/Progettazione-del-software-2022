@@ -159,13 +159,15 @@ class AereoFired implements Task{
 				if (e.getClass().equals(Decollo.class) && e.getMitt().equals(that.getAeroporto())) {
 					that.statoCorrente = Aereo.Stati.IN_VOLO;
 					that.setAereoporto(null);
+				}
 				break;
 			case IN_VOLO:
 				if (e.getClass().equals(Atterra.class)) {
 					that.statoCorrente = Aereo.Stati.HANGAR;
 					that.setAereoporto(that.destinazione);
 					that.destinazione = null;
-				} else if (e.getClass().equals(Emergenza.class)) {
+				} 
+				else if (e.getClass().equals(Emergenza.class)) {
 					that.statoCorrente = Aereo.Stati.EMERGENZA;
 					that.destinazione = that.aereoportovicino();
 					Environment.addEvent(new RichiestaAtterraggio(that, that.destinazione));
